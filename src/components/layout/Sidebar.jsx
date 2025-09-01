@@ -54,6 +54,19 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
       title: "Aproval",
       color: "pink"
     }
+    ,
+     {
+      path: "/admin/managers",
+      icon: '🤵',
+      title: "Managers",
+      color: "pink"
+    },
+    {
+      path: "/admin/salesman",
+      icon: '🧑‍✈️',
+      title: "Salesman",
+      color: "pink"
+    }
   ];
 
   const colorClasses = {

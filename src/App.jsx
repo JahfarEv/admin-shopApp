@@ -22,6 +22,9 @@ import UnapprovedSalesmen from "./features/admin/aproval/Aproval";
 import ManagerRegistration from "./features/manager/ManagerRegistration";
 import ManagerDashboard from "./features/manager/ManagerDashboard";
 import TeamPerformance from "./features/manager/ManagerTeams";
+import ManagersPage from "./features/admin/managers/Managers";
+import Salesman from "./features/admin/salesmans/Salesman";
+
 // Protected Route
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -61,6 +64,10 @@ const App = () => {
               element={<UserSubscriptionDetails />}
             />
             <Route path="/admin/aproval" element={<UnapprovedSalesmen />} />
+            <Route path="/admin/managers" element={<ManagersPage />} />
+                        <Route path="/admin/salesman" element={<Salesman />} />
+
+
             <Route path="/salesman/dashboard" element={<SalesmanDashboard />} />
             <Route path="/salesman/profile" element={<SalesmanProfile />} />
             <Route path="/salesman/shops" element={<SalesmanShops />} />

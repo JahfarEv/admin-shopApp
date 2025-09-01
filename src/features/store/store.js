@@ -9,7 +9,10 @@ import salesmanReducer from "./salesman/salesmanSlice";
 import salesmanProfileReducer from "./salesman/salesmanSlice";
 import salesmansShopReducer from "./salesman/shopSlice";
 import salesmanRegisterReducer from "./salesman/registrationSlice";
-import managerRegistrationReducer from "./manager/managerRegistrationSlice"
+import managerRegistrationReducer from "./manager/managerRegistrationSlice";
+import managerReducer from "./managers/managersSlice"
+import salesmansReducer from "./salesmans/salesmanSlice"
+
 
 export const store = configureStore({
   reducer: {
@@ -22,7 +25,9 @@ export const store = configureStore({
     salesmanProfile: salesmanProfileReducer,
     shop: salesmansShopReducer,
     salesmanRegister: salesmanRegisterReducer,
-        managerRegistration: managerRegistrationReducer,
+    managerRegistration: managerRegistrationReducer,
+    manager: managerReducer, // 👈 must match useSelector(state.manager)
+    salesman: salesmansReducer,
 
   },
 });

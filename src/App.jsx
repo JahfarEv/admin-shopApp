@@ -24,7 +24,10 @@ import ManagerDashboard from "./features/manager/ManagerDashboard";
 import TeamPerformance from "./features/manager/ManagerTeams";
 import ManagersPage from "./features/admin/managers/Managers";
 import Salesman from "./features/admin/salesmans/Salesman";
-
+import CommissionReport from "./features/admin/reports/CommissionReport";
+import GSTReport from "./features/admin/reports/GSTReport";
+import TDSReport from "./features/admin/reports/TDSReport";
+import CreateAdvertisement from "./features/admin/advertisement/CreateAdvertisement"
 // Protected Route
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -65,8 +68,8 @@ const App = () => {
             />
             <Route path="/admin/aproval" element={<UnapprovedSalesmen />} />
             <Route path="/admin/managers" element={<ManagersPage />} />
-                        <Route path="/admin/salesman" element={<Salesman />} />
-
+            <Route path="/admin/salesman" element={<Salesman />} />
+<Route path="/admin/advertisements/create" element={<CreateAdvertisement />} />
 
             <Route path="/salesman/dashboard" element={<SalesmanDashboard />} />
             <Route path="/salesman/profile" element={<SalesmanProfile />} />
@@ -74,7 +77,12 @@ const App = () => {
           </Route>
           <Route path="/manager/dashboard" element={<ManagerDashboard />} />
           <Route path="/manager/teams" element={<TeamPerformance />} />
-
+          <Route
+            path="/admin/report/commission"
+            element={<CommissionReport />}
+          />
+          <Route path="/admin/report/gst" element={<GSTReport />} />
+          <Route path="/admin/report/tds" element={<TDSReport />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

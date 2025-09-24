@@ -396,7 +396,7 @@ export default function UserManagement() {
               <FunnelIcon className="h-4 w-4 mr-2" />
               All Users
             </button>
-            <button
+            {/* <button
               className={`px-4 py-2 rounded-lg flex items-center ${filter === 'subscribed' ? 'bg-green-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'}`}
               onClick={() => dispatch(setFilter('subscribed'))}
             >
@@ -409,7 +409,7 @@ export default function UserManagement() {
             >
               <XMarkIcon className="h-4 w-4 mr-2" />
               Non-Subscribed
-            </button>
+            </button> */}
           </div>
         </div>
 

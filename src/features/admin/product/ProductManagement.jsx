@@ -1,33 +1,34 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { 
-  fetchShops, 
-  toggleShopBan, 
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchShops,
+  toggleShopBan,
   deleteShop,
   setSearchKeyword,
   clearError,
-  filterShops
-} from '../../../features/store/shop/shopSlice';
-import AdminLayout from '../../../components/layout/AdminLayout';
-import { SearchIcon, BanIcon, TrashIcon, PencilAltIcon } from "@heroicons/react/outline";
+  filterShops,
+} from "../../../features/store/shop/shopSlice";
+import AdminLayout from "../../../components/layout/AdminLayout";
+import {
+  SearchIcon,
+  BanIcon,
+  TrashIcon,
+  PencilAltIcon,
+} from "@heroicons/react/outline";
 
 export default function ProductManagement() {
   const dispatch = useDispatch();
-  const {
-    shops,
-    filteredShops,
-    loading,
-    error,
-    searchKeyword
-  } = useSelector((state) => state.shops);
+  const { shops, filteredShops, loading, error, searchKeyword } = useSelector(
+    (state) => state.shops
+  );
 
   useEffect(() => {
     dispatch(fetchShops());
   }, [dispatch]);
 
   const handleSearch = () => {
-    if (searchKeyword.trim() === '') {
+    if (searchKeyword.trim() === "") {
       dispatch(fetchShops());
     } else {
       dispatch(filterShops());
@@ -35,19 +36,19 @@ export default function ProductManagement() {
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleSearch();
     }
   };
 
   const handleToggleBan = (shopId) => {
-    if (window.confirm('Are you sure you want to toggle ban status?')) {
+    if (window.confirm("Are you sure you want to toggle ban status?")) {
       dispatch(toggleShopBan(shopId));
     }
   };
 
   const handleDelete = (shopId) => {
-    if (window.confirm('Are you sure you want to delete this shop?')) {
+    if (window.confirm("Are you sure you want to delete this shop?")) {
       dispatch(deleteShop(shopId));
     }
   };
@@ -57,8 +58,10 @@ export default function ProductManagement() {
       <div className="p-6 max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Shop Management</h2>
-          <Link 
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+            Shop Management
+          </h2>
+          <Link
             to="/admin/shops/add-new"
             className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
           >
@@ -100,7 +103,7 @@ export default function ProductManagement() {
         {error && (
           <div className="bg-red-100 dark:bg-red-900/30 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-300 px-4 py-3 rounded-lg mb-6">
             {error}
-            <button 
+            <button
               onClick={() => dispatch(clearError())}
               className="ml-2 text-red-800 dark:text-red-200 font-medium"
             >
@@ -118,11 +121,16 @@ export default function ProductManagement() {
                   {/* Shop Image */}
                   <div className="h-48 overflow-hidden">
                     <img
-                      src={shop.headerImage || 'https://via.placeholder.com/300x200?text=Shop+Image'}
-                      alt={shop.shopName}
+                      src={shop?.headerImage || "/images/shop-fallback.png"}
+                      alt={shop?.shopName || "Shop"}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       onError={(e) => {
-                        e.target.src = 'https://via.placeholder.com/300x200?text=Shop+Image';
+                        if (
+                          e.target.src !==
+                          window.location.origin + "/images/shop-fallback.png"
+                        ) {
+                          e.target.src = "/images/shop-fallback.png";
+                        }
                       }}
                     />
                   </div>
@@ -130,23 +138,27 @@ export default function ProductManagement() {
                   {/* Shop Info */}
                   <div className="p-4 flex-grow">
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                      {shop.shopName}
-                      {shop.isBanned && (
+                      {shop?.shopName}
+                      {shop?.isBanned && (
                         <span className="ml-2 px-2 py-1 text-xs font-semibold bg-red-100 text-red-800 rounded-full">
                           Banned
                         </span>
                       )}
                     </h3>
-                    
+
                     <div className="space-y-2">
                       <p className="text-sm text-gray-600 dark:text-gray-300">
-                        <span className="font-medium text-gray-800 dark:text-gray-200">Category:</span>{' '}
-                        {shop.category?.join(', ') || 'N/A'}
+                        <span className="font-medium text-gray-800 dark:text-gray-200">
+                          Category:
+                        </span>{" "}
+                        {shop?.category?.join(", ") || "N/A"}
                       </p>
-                      
+
                       <p className="text-sm text-gray-600 dark:text-gray-300">
-                        <span className="font-medium text-gray-800 dark:text-gray-200">Contact:</span>{' '}
-                        {shop.mobileNumber || shop.landlineNumber || 'N/A'}
+                        <span className="font-medium text-gray-800 dark:text-gray-200">
+                          Contact:
+                        </span>{" "}
+                        {shop.mobileNumber || shop.landlineNumber || "N/A"}
                       </p>
                     </div>
                   </div>
@@ -169,13 +181,13 @@ export default function ProductManagement() {
                     <button
                       onClick={() => handleToggleBan(shop._id)}
                       className={`text-sm flex items-center ${
-                        shop.isBanned 
-                          ? 'text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300'
-                          : 'text-yellow-600 dark:text-yellow-400 hover:text-yellow-800 dark:hover:text-yellow-300'
+                        shop.isBanned
+                          ? "text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300"
+                          : "text-yellow-600 dark:text-yellow-400 hover:text-yellow-800 dark:hover:text-yellow-300"
                       }`}
                     >
                       <BanIcon className="h-4 w-4 mr-1" />
-                      {shop.isBanned ? 'Unban' : 'Ban'}
+                      {shop.isBanned ? "Unban" : "Ban"}
                     </button>
                     <button
                       onClick={() => handleDelete(shop._id)}
@@ -213,7 +225,9 @@ export default function ProductManagement() {
                 No shops found
               </h3>
               <p className="mt-1 text-gray-500 dark:text-gray-400">
-                {searchKeyword.trim() ? 'Try a different search term' : 'No shops available yet'}
+                {searchKeyword.trim()
+                  ? "Try a different search term"
+                  : "No shops available yet"}
               </p>
             </div>
           </div>

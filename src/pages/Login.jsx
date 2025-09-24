@@ -528,7 +528,7 @@ export default function LoginPage() {
           </button>
 
           {/* Register link */}
-          {(role === "salesman" || role === "manager") && (
+          {/* {(role === "salesman" || role === "manager") && (
             <div className="mt-4 text-center">
               <p className="text-white/80 text-sm">
                 Don't have an account?{" "}
@@ -540,7 +540,7 @@ export default function LoginPage() {
                 </a>
               </p>
             </div>
-          )}
+          )} */}
         </form>
 
         {/* Footer */}

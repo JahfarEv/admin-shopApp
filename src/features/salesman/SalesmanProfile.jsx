@@ -181,7 +181,7 @@ const SalesmanProfile = () => {
                       <input
                         type="text"
                         name="bankName"
-                        value={formData.bankName}
+                        value={formData?.bankName}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
@@ -191,7 +191,7 @@ const SalesmanProfile = () => {
                       <input
                         type="text"
                         name="bankAccountNumber"
-                        value={formData.bankAccountNumber}
+                        value={formData?.bankAccountNumber}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
@@ -201,7 +201,7 @@ const SalesmanProfile = () => {
                       <input
                         type="text"
                         name="ifscCode"
-                        value={formData.ifscCode}
+                        value={formData?.ifscCode}
                         onChange={handleInputChange}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
@@ -222,11 +222,11 @@ const SalesmanProfile = () => {
               <div className="space-y-8">
                 <div className="flex items-center gap-6">
                   <div className="w-20 h-20 bg-blue-500 text-white rounded-full flex items-center justify-center text-3xl font-bold">
-                    {salesman.name?.charAt(0) || "S"}
+                    {salesman?.name?.charAt(0) || "S"}
                   </div>
                   <div>
-                    <h2 className="text-2xl font-semibold text-gray-800">{salesman.name}</h2>
-                    <p className="text-gray-600">{salesman.email}</p>
+                    <h2 className="text-2xl font-semibold text-gray-800">{salesman?.name}</h2>
+                    <p className="text-gray-600">{salesman?.email}</p>
                   </div>
                 </div>
 
@@ -237,15 +237,15 @@ const SalesmanProfile = () => {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
                       <p className="text-sm text-gray-500">Full Name</p>
-                      <p className="font-medium text-gray-800">{salesman.name}</p>
+                      <p className="font-medium text-gray-800">{salesman?.name}</p>
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">Email Address</p>
-                      <p className="font-medium text-gray-800">{salesman.email}</p>
+                      <p className="font-medium text-gray-800">{salesman?.email}</p>
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">Mobile Number</p>
-                      <p className="font-medium text-gray-800">{salesman.mobileNumber}</p>
+                      <p className="font-medium text-gray-800">{salesman?.mobileNumber}</p>
                     </div>
                   </div>
                 </div>
@@ -258,15 +258,15 @@ const SalesmanProfile = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                       <div>
                         <p className="text-sm text-gray-500">Bank Name</p>
-                        <p className="font-medium text-gray-800">{salesman.bankName}</p>
+                        <p className="font-medium text-gray-800">{salesman?.bankName}</p>
                       </div>
                       <div>
                         <p className="text-sm text-gray-500">Account Number</p>
-                        <p className="font-medium text-gray-800">{salesman.bankAccountNumber}</p>
+                        <p className="font-medium text-gray-800">{salesman?.bankAccountNumber}</p>
                       </div>
                       <div>
                         <p className="text-sm text-gray-500">IFSC Code</p>
-                        <p className="font-medium text-gray-800">{salesman.ifscCode}</p>
+                        <p className="font-medium text-gray-800">{salesman?.ifscCode}</p>
                       </div>
                     </div>
                   </div>

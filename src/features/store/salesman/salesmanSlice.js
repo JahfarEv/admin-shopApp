@@ -25,13 +25,15 @@ export const fetchSalesmanData = createAsyncThunk(
           },
         }
       );
-
+      
       if (!response.ok) {
         throw new Error('Failed to fetch salesman details');
       }
-
+      
       const data = await response.json();
-      return data.salesman;
+console.log(data, 'rers');
+return data.salesman;   // return whole object
+
     } catch (error) {
       return rejectWithValue(error.message);
     }

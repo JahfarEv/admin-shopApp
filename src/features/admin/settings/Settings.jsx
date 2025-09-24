@@ -760,7 +760,7 @@ const CommissionSettings = () => {
             {/* Sales Commission */}
             <div>
               <label htmlFor="salesCommission" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Sales Commission (₹)
+                Subscription Commission (₹)
               </label>
               <div className="relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -802,7 +802,7 @@ const CommissionSettings = () => {
             {/* Subscription Commission */}
             <div>
               <label htmlFor="subscriptionCommission" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                Subscription Commission (₹)
+                Renewal Commission (₹)
               </label>
               <div className="relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">

@@ -27,7 +27,7 @@ export const store = configureStore({
     salesmanRegister: salesmanRegisterReducer,
     managerRegistration: managerRegistrationReducer,
     manager: managerReducer, // 👈 must match useSelector(state.manager)
-    salesman: salesmansReducer,
+    salesmans: salesmansReducer,
 
   },
 });

@@ -10,7 +10,7 @@ import AdminLayout from "../../../components/layout/AdminLayout";
 const SalesmanPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { salesmen, loading, error } = useSelector((state) => state.salesman);
+  const { salesmen, loading, error } = useSelector((state) => state.salesmans);
 
   useEffect(() => {
     dispatch(fetchSalesmen());
@@ -39,53 +39,67 @@ const SalesmanPage = () => {
         {loading && <p>Loading salesmen...</p>}
         {error && <p className="text-red-500">{error}</p>}
 
-      <table className="w-full border-collapse border border-gray-300">
-  <thead>
-    <tr className="bg-gray-200 text-black">
-      <th className="border border-gray-300 px-4 py-2">Name</th>
-      <th className="border border-gray-300 px-4 py-2">Email</th>
-      <th className="border border-gray-300 px-4 py-2">Mobile</th>
-      <th className="border border-gray-300 px-4 py-2">Manager</th>
-      <th className="border border-gray-300 px-4 py-2">Commission Earned</th>
-      <th className="border border-gray-300 px-4 py-2">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {salesmen?.length > 0 ? (
-      salesmen.map((salesman) => (
-        <tr key={salesman._id} className="text-white">
-          <td className="border border-gray-300 px-4 py-2">{salesman.name}</td>
-          <td className="border border-gray-300 px-4 py-2">{salesman.email}</td>
-          <td className="border border-gray-300 px-4 py-2">{salesman.mobileNumber}</td>
-          <td className="border border-gray-300 px-4 py-2">{salesman.manager?.name}</td>
-          <td className="border border-gray-300 px-4 py-2">
-            {salesman.salesCommissionEarned?.length > 0 
-              ? salesman.salesCommissionEarned.join(", ")
-              : "0"}
-          </td>
-          <td className="border border-gray-300 px-4 py-2 text-center">
-            <button
-              onClick={() => handleDelete(salesman._id)}
-              className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-            >
-              Delete
-            </button>
-          </td>
-        </tr>
-      ))
-    ) : (
-      <tr>
-        <td
-          colSpan="6"
-          className="border border-gray-300 px-4 py-2 text-center text-red-600"
-        >
-          No salesmen found
-        </td>
-      </tr>
-    )}
-  </tbody>
-</table>
+        <table className="w-full border-collapse border border-gray-300">
+          <thead>
+            <tr className="bg-gray-200 text-black">
+              <th className="border border-gray-300 px-4 py-2">Name</th>
+              <th className="border border-gray-300 px-4 py-2">Email</th>
+              <th className="border border-gray-300 px-4 py-2">Mobile</th>
+              <th className="border border-gray-300 px-4 py-2">Manager</th>
+              <th className="border border-gray-300 px-4 py-2">
+                Commission Earned
+              </th>
+              <th className="border border-gray-300 px-4 py-2">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {salesmen?.length > 0 ? (
+              salesmen.map((salesman) => (
+                <tr key={salesman._id} className="text-white">
+                  <td className="border border-gray-300 px-4 py-2">
+                    {salesman.name}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {salesman.email}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {salesman.mobileNumber}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {salesman.manager?.name}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {salesman.salesCommissionEarned &&
+                    salesman.salesCommissionEarned.length > 0
+                      ? salesman.salesCommissionEarned.reduce(
+                          (total, entry) => total + (entry.amount || 0),
+                          0
+                        )
+                      : 0}
+                  </td>
 
+                  <td className="border border-gray-300 px-4 py-2 text-center">
+                    <button
+                      onClick={() => handleDelete(salesman._id)}
+                      className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td
+                  colSpan="6"
+                  className="border border-gray-300 px-4 py-2 text-center text-red-600"
+                >
+                  No salesmen found
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </div>
     </AdminLayout>
   );

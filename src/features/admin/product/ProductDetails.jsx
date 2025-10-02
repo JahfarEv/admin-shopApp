@@ -266,7 +266,7 @@ const ProductDetails = () => {
         {/* Error State */}
         {status === 'failed' && (
           <div className="flex justify-center items-center h-64">
-            <p className="text-red-400 text-lg">Error loading products</p>
+            <p className="text-red-400 text-lg">No products available for this shop.</p>
           </div>
         )}
 

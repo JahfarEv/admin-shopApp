@@ -36,7 +36,7 @@ const CreateAdvertisement = () => {
       formData.append("title", title);
       formData.append("image", image);
 
-      const res = await fetch("https://shop-app-backend-k0a2.onrender.com/adminDashboard/advertisement", {
+      const res = await fetch("https://api.poketstor.com/adminDashboard/advertisement", {
         method: "POST",
         body: formData,
       });

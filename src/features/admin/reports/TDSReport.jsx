@@ -153,18 +153,7 @@ const TDSReport = () => {
             >
               Download Excel
             </button>
-            {/* <button
-              onClick={exportToExcelWithFormatting}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition duration-200 text-sm"
-            >
-              Formatted Excel
-            </button>
-            <button
-              onClick={exportToCSV}
-              className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition duration-200 text-sm"
-            >
-              Download CSV
-            </button> */}
+            
           </div>
         </div>
         

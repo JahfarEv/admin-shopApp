@@ -6,7 +6,7 @@ export const fetchUsers = createAsyncThunk(
     try {
       const token = localStorage.getItem('adminToken');
       const res = await fetch(
-        'https://shop-app-backend-k0a2.onrender.com/adminDashboard/getalluser',
+        `${import.meta.env.VITE_APP_BACKEND_URL}/adminDashboard/getalluser`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -28,6 +28,7 @@ import CommissionReport from "./features/admin/reports/CommissionReport";
 import GSTReport from "./features/admin/reports/GSTReport";
 import TDSReport from "./features/admin/reports/TDSReport";
 import CreateAdvertisement from "./features/admin/advertisement/CreateAdvertisement"
+import AdvertisementList from "./features/admin/advertisement/AdvertisementList"
 // Protected Route
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -70,6 +71,7 @@ const App = () => {
             <Route path="/admin/managers" element={<ManagersPage />} />
             <Route path="/admin/salesman" element={<Salesman />} />
 <Route path="/admin/advertisements/create" element={<CreateAdvertisement />} />
+<Route path="/admin/advertisements" element={<AdvertisementList />} />
 
             <Route path="/salesman/dashboard" element={<SalesmanDashboard />} />
             <Route path="/salesman/profile" element={<SalesmanProfile />} />

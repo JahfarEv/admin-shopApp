@@ -226,12 +226,12 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
       title: "Shops",
       color: "green",
     },
-    {
-      path: "/admin/subscription-plans",
-      icon: "💳",
-      title: "Subscriptions",
-      color: "purple",
-    },
+    // {
+    //   path: "/admin/subscription-plans",
+    //   icon: "💳",
+    //   title: "Subscriptions",
+    //   color: "purple",
+    // },
     {
       path: "/admin/settings",
       icon: "⚙️",
@@ -257,7 +257,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
       color: "green",
     },
     {
-      path: "/admin/advertisements/create",
+      path: "/admin/advertisements",
       icon: "📢",
       title: "Advertisements",
       color: "indigo",

@@ -21,14 +21,9 @@ import {
   ExclamationCircleIcon,
   XIcon,
   ChevronDownIcon,
-  ChevronUpIcon,
   ShoppingBagIcon,
-  CollectionIcon,
-  ChartBarIcon,
+  AdjustmentsIcon,
 } from "@heroicons/react/outline";
-
-// Or use solid icons if BuildingStorefrontIcon is needed
-// import { BuildingStorefrontIcon } from "@heroicons/react/solid";
 
 export default function ShopManagement() {
   const dispatch = useDispatch();
@@ -101,100 +96,191 @@ export default function ShopManagement() {
     setExpandedShopId(expandedShopId === shopId ? null : shopId);
   };
 
+  const clearSearch = () => {
+    dispatch(setSearchKeyword(""));
+    dispatch(fetchShops());
+  };
+
   return (
     <AdminLayout>
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-4 md:p-6 lg:p-8">
-        {/* Header Section */}
+        {/* Header Section - Single Row */}
         <div className="mb-6 md:mb-8">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
-                Shop Management
-              </h1>
-              <p className="text-gray-600 dark:text-gray-300 mt-1">
-                Manage all registered shops and their status
-              </p>
+          {/* Heading Row */}
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center space-x-3">
+              <div className="bg-gradient-to-r from-indigo-500 to-purple-600 p-3 rounded-xl shadow-lg">
+                <ShoppingBagIcon className="h-8 w-8 text-white" />
+              </div>
+              <div>
+                <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+                  Shop Management
+                </h1>
+                <p className="text-gray-600 dark:text-gray-300">
+                  Manage all registered shops and their status
+                </p>
+              </div>
             </div>
-            
-            {/* Stats Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
-              <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-4 shadow-lg">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-blue-100 text-sm font-medium">Total Shops</p>
-                    <p className="text-white text-2xl font-bold">{stats.total}</p>
-                  </div>
-                  <ShoppingBagIcon className="h-8 w-8 text-blue-200" />
-                </div>
-              </div>
-              
-              <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-xl p-4 shadow-lg">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-green-100 text-sm font-medium">Active</p>
-                    <p className="text-white text-2xl font-bold">{stats.active}</p>
-                  </div>
-                  <div className="h-8 w-8 rounded-full bg-green-200 flex items-center justify-center">
-                    <div className="h-4 w-4 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-gradient-to-r from-red-500 to-red-600 rounded-xl p-4 shadow-lg">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-red-100 text-sm font-medium">Banned</p>
-                    <p className="text-white text-2xl font-bold">{stats.banned}</p>
-                  </div>
-                  <BanIcon className="h-8 w-8 text-red-200" />
-                </div>
+            <div className="hidden md:flex items-center space-x-2">
+              <div className="bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 px-4 py-2 rounded-lg font-medium">
+                Total: {stats.total}
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Search Section */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-4 md:p-6 mb-6 md:mb-8">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex-grow relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <SearchIcon className="h-5 w-5 text-gray-400" />
+          {/* Search and Status Row - Two Columns */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Search Section - Left Column */}
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center">
+                  <SearchIcon className="h-5 w-5 text-gray-400 mr-2" />
+                  <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    Search Shops
+                  </h2>
+                </div>
+                <AdjustmentsIcon className="h-5 w-5 text-gray-400" />
               </div>
-              <input
-                type="text"
-                placeholder="Search shops by name, email, or mobile number..."
-                value={searchKeyword}
-                onChange={(e) => dispatch(setSearchKeyword(e.target.value))}
-                onKeyPress={handleKeyPress}
-                className="block w-full pl-10 pr-4 py-3 md:py-4 border-2 border-gray-200 dark:border-gray-700 rounded-xl bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
-              />
+              
+              <div className="flex flex-col sm:flex-row gap-3">
+                <div className="flex-grow relative">
+                  <input
+                    type="text"
+                    placeholder="Search by shop name, email, or mobile number..."
+                    value={searchKeyword}
+                    onChange={(e) => dispatch(setSearchKeyword(e.target.value))}
+                    onKeyPress={handleKeyPress}
+                    className="block w-full pl-4 pr-10 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-xl bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
+                  />
+                  {searchKeyword && (
+                    <button
+                      onClick={clearSearch}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                    >
+                      <XIcon className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                    </button>
+                  )}
+                </div>
+                <button
+                  onClick={handleSearch}
+                  className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center whitespace-nowrap"
+                >
+                  <SearchIcon className="h-5 w-5 mr-2" />
+                  Search
+                </button>
+              </div>
+              
+              {/* Search Info */}
+              <div className="mt-4 flex flex-wrap items-center justify-between">
+                <span className="text-sm text-gray-600 dark:text-gray-400">
+                  {searchKeyword 
+                    ? `Search results: ${filteredShops.length} shops found`
+                    : `Showing ${filteredShops.length} of ${shops.length} shops`
+                  }
+                </span>
+                {searchKeyword && (
+                  <button
+                    onClick={clearSearch}
+                    className="text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 flex items-center"
+                  >
+                    <XIcon className="h-4 w-4 mr-1" />
+                    Clear search
+                  </button>
+                )}
+              </div>
             </div>
-            <button
-              onClick={handleSearch}
-              className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold px-6 py-3 md:py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center"
-            >
-              <SearchIcon className="h-5 w-5 mr-2" />
-              Search
-            </button>
-          </div>
-          
-          {/* Quick Stats */}
-          <div className="mt-4 flex flex-wrap gap-2">
-            <span className="text-sm text-gray-600 dark:text-gray-400">
-              Showing {filteredShops.length} of {shops.length} shops
-            </span>
-            {searchKeyword && (
-              <button
-                onClick={() => {
-                  dispatch(setSearchKeyword(""));
-                  dispatch(fetchShops());
-                }}
-                className="text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 flex items-center"
-              >
-                <XIcon className="h-4 w-4 mr-1" />
-                Clear search
-              </button>
-            )}
+
+            {/* Status Section - Right Column */}
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center">
+                  <BanIcon className="h-5 w-5 text-gray-400 mr-2" />
+                  <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    Status Overview
+                  </h2>
+                </div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">
+                  Updated just now
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                {/* Active Shops */}
+                <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 border border-green-200 dark:border-green-800 rounded-xl p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-green-800 dark:text-green-300">
+                        Active Shops
+                      </p>
+                      <p className="text-2xl font-bold text-green-900 dark:text-green-200 mt-1">
+                        {stats.active}
+                      </p>
+                    </div>
+                    <div className="h-10 w-10 bg-green-500/20 rounded-full flex items-center justify-center">
+                      <div className="h-5 w-5 rounded-full bg-green-500"></div>
+                    </div>
+                  </div>
+                  <div className="mt-3 flex items-center">
+                    <div className="flex-1 h-2 bg-green-200 dark:bg-green-800 rounded-full overflow-hidden mr-2">
+                      <div 
+                        className="h-full bg-green-500 rounded-full"
+                        style={{ width: stats.total > 0 ? `${(stats.active / stats.total) * 100}%` : '0%' }}
+                      ></div>
+                    </div>
+                    <span className="text-xs font-medium text-green-700 dark:text-green-400">
+                      {stats.total > 0 ? Math.round((stats.active / stats.total) * 100) : 0}%
+                    </span>
+                  </div>
+                </div>
+
+                {/* Banned Shops */}
+                <div className="bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 border border-red-200 dark:border-red-800 rounded-xl p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-red-800 dark:text-red-300">
+                        Banned Shops
+                      </p>
+                      <p className="text-2xl font-bold text-red-900 dark:text-red-200 mt-1">
+                        {stats.banned}
+                      </p>
+                    </div>
+                    <div className="h-10 w-10 bg-red-500/20 rounded-full flex items-center justify-center">
+                      <BanIcon className="h-5 w-5 text-red-500" />
+                    </div>
+                  </div>
+                  <div className="mt-3 flex items-center">
+                    <div className="flex-1 h-2 bg-red-200 dark:bg-red-800 rounded-full overflow-hidden mr-2">
+                      <div 
+                        className="h-full bg-red-500 rounded-full"
+                        style={{ width: stats.total > 0 ? `${(stats.banned / stats.total) * 100}%` : '0%' }}
+                      ></div>
+                    </div>
+                    <span className="text-xs font-medium text-red-700 dark:text-red-400">
+                      {stats.total > 0 ? Math.round((stats.banned / stats.total) * 100) : 0}%
+                    </span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Status Summary */}
+              <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-gray-600 dark:text-gray-400">
+                    Quick Stats
+                  </span>
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center">
+                      <div className="h-3 w-3 rounded-full bg-green-500 mr-2"></div>
+                      <span className="text-xs text-gray-600 dark:text-gray-400">Active ({stats.active})</span>
+                    </div>
+                    <div className="flex items-center">
+                      <div className="h-3 w-3 rounded-full bg-red-500 mr-2"></div>
+                      <span className="text-xs text-gray-600 dark:text-gray-400">Banned ({stats.banned})</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -341,120 +427,138 @@ export default function ShopManagement() {
 
         {/* Desktop View - Grid */}
         {!loading && !mobileView && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredShops.map((shop) => (
-              <div
-                key={shop._id}
-                className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-gray-200 dark:border-gray-700 h-full flex flex-col"
-              >
-                {/* Shop Image */}
-                <div className="relative overflow-hidden">
-                  <img
-                    src={
-                      shop?.headerImage?.trim() || "/images/shop-header-default.jpg"
-                    }
-                    alt={shop?.shopName}
-                    className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
-                    onError={(e) => {
-                      e.currentTarget.src = "/images/store.png";
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  
-                  {/* Status Badge */}
-                  <div className="absolute top-4 right-4">
-                    {shop.isBanned ? (
-                      <span className="px-3 py-1 bg-red-500 text-white text-xs font-bold rounded-full shadow-lg flex items-center">
-                        <BanIcon className="h-3 w-3 mr-1" />
-                        BANNED
-                      </span>
-                    ) : (
-                      <span className="px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full shadow-lg">
-                        ACTIVE
-                      </span>
-                    )}
+          <>
+            {/* Results Header */}
+            <div className="mb-6">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                  All Shops ({filteredShops.length})
+                </h2>
+                {searchKeyword && (
+                  <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                    <SearchIcon className="h-4 w-4 mr-2" />
+                    Search results for: "{searchKeyword}"
                   </div>
-                </div>
+                )}
+              </div>
+            </div>
 
-                {/* Shop Info */}
-                <div className="p-6 flex-grow">
-                  <div className="mb-4">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 truncate">
-                      {shop?.shopName || "Unnamed Shop"}
-                    </h3>
+            {/* Shops Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {filteredShops.map((shop) => (
+                <div
+                  key={shop._id}
+                  className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border border-gray-200 dark:border-gray-700 h-full flex flex-col"
+                >
+                  {/* Shop Image */}
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={
+                        shop?.headerImage?.trim() || "/images/shop-header-default.jpg"
+                      }
+                      alt={shop?.shopName}
+                      className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
+                      onError={(e) => {
+                        e.currentTarget.src = "/images/store.png";
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     
-                    <div className="flex items-center text-gray-600 dark:text-gray-400 mb-3">
-                      <PhoneIcon className="h-4 w-4 mr-2 flex-shrink-0" />
-                      <span className="truncate">
-                        {shop.mobileNumber || shop.landlineNumber || "No contact"}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Categories */}
-                  <div className="mb-4">
-                    <label className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 block">
-                      Categories
-                    </label>
-                    <div className="flex flex-wrap gap-2">
-                      {shop?.category?.slice(0, 3).map((cat, index) => (
-                        <span
-                          key={index}
-                          className="px-3 py-1.5 bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 text-indigo-800 dark:text-indigo-300 text-sm font-medium rounded-lg flex items-center"
-                        >
-                          <TagIcon className="h-3 w-3 mr-1.5" />
-                          {cat}
+                    {/* Status Badge */}
+                    <div className="absolute top-4 right-4">
+                      {shop.isBanned ? (
+                        <span className="px-3 py-1 bg-red-500 text-white text-xs font-bold rounded-full shadow-lg flex items-center">
+                          <BanIcon className="h-3 w-3 mr-1" />
+                          BANNED
                         </span>
-                      ))}
-                      {shop?.category?.length > 3 && (
-                        <span className="px-3 py-1.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-sm font-medium rounded-lg">
-                          +{shop.category.length - 3} more
+                      ) : (
+                        <span className="px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full shadow-lg">
+                          ACTIVE
                         </span>
                       )}
                     </div>
                   </div>
-                </div>
 
-                {/* Action Buttons */}
-                <div className="p-6 pt-0">
-                  <div className="grid grid-cols-2 gap-3">
-                    <Link
-                      to={`/admin/shops/edit/${shop._id}`}
-                      className="bg-gradient-to-r from-blue-500 to-blue-600 text-white text-center py-3 px-4 rounded-xl font-semibold hover:from-blue-600 hover:to-blue-700 transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center shadow-md"
-                    >
-                      <PencilAltIcon className="h-5 w-5 mr-2" />
-                      Edit
-                    </Link>
-                    <Link
-                      to={`/admin/shops/products/${shop._id}`}
-                      className="bg-gradient-to-r from-purple-500 to-purple-600 text-white text-center py-3 px-4 rounded-xl font-semibold hover:from-purple-600 hover:to-purple-700 transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center shadow-md"
-                    >
-                      <EyeIcon className="h-5 w-5 mr-2" />
-                      View
-                    </Link>
-                    <button
-                      onClick={() => handleToggleBan(shop._id, shop.shopName)}
-                      className={`py-3 px-4 rounded-xl font-semibold transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center shadow-md ${
-                        shop.isBanned
-                          ? "bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700"
-                          : "bg-gradient-to-r from-yellow-500 to-yellow-600 text-white hover:from-yellow-600 hover:to-yellow-700"
-                      }`}
-                    >
-                      <BanIcon className="h-5 w-5 mr-2" />
-                      {shop.isBanned ? "Unban" : "Ban"}
-                    </button>
-                    <button
-                      onClick={() => handleDelete(shop._id, shop.shopName)}
-                      className="bg-gradient-to-r from-red-500 to-red-600 text-white py-3 px-4 rounded-xl font-semibold hover:from-red-600 hover:to-red-700 transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center shadow-md"
-                    >
-                      <TrashIcon className="h-5 w-5 mr-2" />
-                      Delete
-                    </button>
+                  {/* Shop Info */}
+                  <div className="p-6 flex-grow">
+                    <div className="mb-4">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 truncate">
+                        {shop?.shopName || "Unnamed Shop"}
+                      </h3>
+                      
+                      <div className="flex items-center text-gray-600 dark:text-gray-400 mb-3">
+                        <PhoneIcon className="h-4 w-4 mr-2 flex-shrink-0" />
+                        <span className="truncate">
+                          {shop.mobileNumber || shop.landlineNumber || "No contact"}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Categories */}
+                    <div className="mb-4">
+                      <label className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 block">
+                        Categories
+                      </label>
+                      <div className="flex flex-wrap gap-2">
+                        {shop?.category?.slice(0, 3).map((cat, index) => (
+                          <span
+                            key={index}
+                            className="px-3 py-1.5 bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 text-indigo-800 dark:text-indigo-300 text-sm font-medium rounded-lg flex items-center"
+                          >
+                            <TagIcon className="h-3 w-3 mr-1.5" />
+                            {cat}
+                          </span>
+                        ))}
+                        {shop?.category?.length > 3 && (
+                          <span className="px-3 py-1.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-sm font-medium rounded-lg">
+                            +{shop.category.length - 3} more
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="p-6 pt-0">
+                    <div className="grid grid-cols-2 gap-3">
+                      <Link
+                        to={`/admin/shops/edit/${shop._id}`}
+                        className="bg-gradient-to-r from-blue-500 to-blue-600 text-white text-center py-3 px-4 rounded-xl font-semibold hover:from-blue-600 hover:to-blue-700 transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center shadow-md"
+                      >
+                        <PencilAltIcon className="h-5 w-5 mr-2" />
+                        Edit
+                      </Link>
+                      <Link
+                        to={`/admin/shops/products/${shop._id}`}
+                        className="bg-gradient-to-r from-purple-500 to-purple-600 text-white text-center py-3 px-4 rounded-xl font-semibold hover:from-purple-600 hover:to-purple-700 transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center shadow-md"
+                      >
+                        <EyeIcon className="h-5 w-5 mr-2" />
+                        View
+                      </Link>
+                      <button
+                        onClick={() => handleToggleBan(shop._id, shop.shopName)}
+                        className={`py-3 px-4 rounded-xl font-semibold transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center shadow-md ${
+                          shop.isBanned
+                            ? "bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700"
+                            : "bg-gradient-to-r from-yellow-500 to-yellow-600 text-white hover:from-yellow-600 hover:to-yellow-700"
+                        }`}
+                      >
+                        <BanIcon className="h-5 w-5 mr-2" />
+                        {shop.isBanned ? "Unban" : "Ban"}
+                      </button>
+                      <button
+                        onClick={() => handleDelete(shop._id, shop.shopName)}
+                        className="bg-gradient-to-r from-red-500 to-red-600 text-white py-3 px-4 rounded-xl font-semibold hover:from-red-600 hover:to-red-700 transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center shadow-md"
+                      >
+                        <TrashIcon className="h-5 w-5 mr-2" />
+                        Delete
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </>
         )}
 
         {/* Empty State */}
@@ -474,10 +578,7 @@ export default function ShopManagement() {
               </p>
               {searchKeyword.trim() && (
                 <button
-                  onClick={() => {
-                    dispatch(setSearchKeyword(""));
-                    dispatch(fetchShops());
-                  }}
+                  onClick={clearSearch}
                   className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold px-6 py-3 rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-200"
                 >
                   Clear Search & Show All

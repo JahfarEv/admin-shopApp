@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { registerManager, clearRegistrationError } from "../store/manager/managerRegistrationSlice";
-
+import AdminLayout from "../../components/layout/AdminLayout";
 const ManagerRegistration = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -89,7 +89,9 @@ const ManagerRegistration = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8">
+    <AdminLayout>
+    
+    <div className="min-h-screen  py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         <div className="bg-white shadow-xl rounded-lg overflow-hidden">
           <div className="md:flex">
@@ -419,6 +421,7 @@ const ManagerRegistration = () => {
         </div>
       </div>
     </div>
+    </AdminLayout>
   );
 };
 

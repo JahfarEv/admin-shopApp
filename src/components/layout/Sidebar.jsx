@@ -226,12 +226,12 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
       title: "Shops",
       color: "green",
     },
-    // {
-    //   path: "/admin/subscription-plans",
-    //   icon: "💳",
-    //   title: "Subscriptions",
-    //   color: "purple",
-    // },
+    {
+      path: "/admin/subscription",
+      icon: "💳",
+      title: "Subscriptions",
+      color: "purple",
+    },
     {
       path: "/admin/settings",
       icon: "⚙️",
@@ -333,11 +333,12 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
       `}
     >
       {/* Header */}
-      <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
-        <h2 className="text-xl font-bold text-gray-800 dark:text-white">
-          Admin Panel
-        </h2>
-      </div>
+     <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex flex-shrink-0 items-center justify-center">
+  <h2 className="text-3xl font-bold text-gray-800 dark:text-white">
+    Poket<span className="text-yellow-400">Store</span>
+  </h2>
+</div>
+
 
       {/* Navigation */}
       <nav className="flex-1 overflow-y-auto p-4">

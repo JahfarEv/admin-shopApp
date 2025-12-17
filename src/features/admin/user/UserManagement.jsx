@@ -354,7 +354,7 @@ export default function UserManagement() {
 
   return (
     <AdminLayout>
-      <div className="p-6 max-w-7xl mx-auto">
+      <div className="p-6 ">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white">User Management</h2>
@@ -387,30 +387,6 @@ export default function UserManagement() {
             </button>
           </div>
 
-          {/* Filter Buttons */}
-          <div className="flex flex-wrap gap-2 mt-4">
-            <button
-              className={`px-4 py-2 rounded-lg flex items-center ${filter === 'all' ? 'bg-indigo-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'}`}
-              onClick={() => dispatch(setFilter('all'))}
-            >
-              <FunnelIcon className="h-4 w-4 mr-2" />
-              All Users
-            </button>
-            {/* <button
-              className={`px-4 py-2 rounded-lg flex items-center ${filter === 'subscribed' ? 'bg-green-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'}`}
-              onClick={() => dispatch(setFilter('subscribed'))}
-            >
-              <CheckIcon className="h-4 w-4 mr-2" />
-              Subscribed
-            </button>
-            <button
-              className={`px-4 py-2 rounded-lg flex items-center ${filter === 'non' ? 'bg-red-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'}`}
-              onClick={() => dispatch(setFilter('non'))}
-            >
-              <XMarkIcon className="h-4 w-4 mr-2" />
-              Non-Subscribed
-            </button> */}
-          </div>
         </div>
 
         {/* Loading and Error States */}

@@ -27,8 +27,9 @@ import Salesman from "./features/admin/salesmans/Salesman";
 import CommissionReport from "./features/admin/reports/CommissionReport";
 import GSTReport from "./features/admin/reports/GSTReport";
 import TDSReport from "./features/admin/reports/TDSReport";
-import CreateAdvertisement from "./features/admin/advertisement/CreateAdvertisement"
-import AdvertisementList from "./features/admin/advertisement/AdvertisementList"
+import CreateAdvertisement from "./features/admin/advertisement/CreateAdvertisement";
+import AdvertisementList from "./features/admin/advertisement/AdvertisementList";
+import ShopSubscription from './features/admin/subscription/ShopSubscription'
 // Protected Route
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -56,8 +57,8 @@ const App = () => {
             />
             <Route path="/admin/settings" element={<CommissionSettings />} />
             <Route
-              path="/admin/subscription-plans"
-              element={<SubscriptionPlans />}
+              path="/admin/subscription"
+              element={<ShopSubscription />}
             />
             <Route
               path="/subscription-plans/edit"
@@ -70,8 +71,14 @@ const App = () => {
             <Route path="/admin/aproval" element={<UnapprovedSalesmen />} />
             <Route path="/admin/managers" element={<ManagersPage />} />
             <Route path="/admin/salesman" element={<Salesman />} />
-<Route path="/admin/advertisements/create" element={<CreateAdvertisement />} />
-<Route path="/admin/advertisements" element={<AdvertisementList />} />
+            <Route
+              path="/admin/advertisements/create"
+              element={<CreateAdvertisement />}
+            />
+            <Route
+              path="/admin/advertisements"
+              element={<AdvertisementList />}
+            />
 
             <Route path="/salesman/dashboard" element={<SalesmanDashboard />} />
             <Route path="/salesman/profile" element={<SalesmanProfile />} />

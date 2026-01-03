@@ -2,3 +2,7 @@
 @import "tailwindcss";
 
 
+/* In your global.css or App.css */
+.dark body, .dark {
+  background-color: #000 !important;
+}
